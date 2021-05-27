@@ -2,6 +2,8 @@ package com.cjj.demo.socketpc;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
@@ -33,11 +35,10 @@ public class ProducerClient {
                 try {
                     Socket socket = new Socket(IP, PORT);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                    //while (true){
-                        for (int i = 0; i < 999999; i++) {
+                    while (true){
                         JSONObject object = new JSONObject();
                         object.put("type", "chat");
-                        object.put("msg", "生产者生产信息" + i);
+                        object.put("msg", "生产者生产信息");
                         objectOutputStream.writeObject(object);
                         objectOutputStream.flush();
                     }

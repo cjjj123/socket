@@ -1,11 +1,10 @@
-package com.cjj.demo.socketpc;
+package com.cjj.demo.socket0519;
+
+
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * 服务端

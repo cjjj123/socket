@@ -1,13 +1,10 @@
-package com.cjj.demo.socketpc;
+package com.cjj.demo.socket0519;
 
 
-import com.alibaba.fastjson.JSONObject;
 
-import java.io.IOException;
+
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Queue;
-import java.util.Scanner;
 
 /**
  * xiangjiaoyun
@@ -31,11 +28,9 @@ public class ServerSendThread implements Runnable {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             while(true){
-                synchronized (message){
-                    Object object = message.send();
+                    Object object = message.consume();
                     oos.writeObject(object);
                     oos.flush();
-                }
             }
         }catch (Exception e){
             e.printStackTrace();

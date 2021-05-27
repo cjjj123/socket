@@ -15,28 +15,28 @@ public class Message {
 
     private final static int size = 5;
 
-    public synchronized void add(Object object){
+    public void add(Object object){
         try {
             if(queue.size() == size){
                 System.out.println("信息满了，等待读取");
                 wait();
             }
             queue.add(object);
-            System.out.println(queue.size());
-            System.out.println("添加信息成功");
+            System.out.println("添加信息成功,信息內容：" + object);
+            Thread.sleep((long) (Math.random() * 3000));
             notify();
         }catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public synchronized Object send() throws InterruptedException{
+    public Object send() throws InterruptedException{
             if(queue.size() == 0){
                 System.out.println("沒有信息，等待發送");
                 wait();
             }
             Object poll = queue.poll();
-            System.out.println("發送信息成功");
+            System.out.println("發送信息成功,信息內容：" + poll);
             Thread.sleep((long) (Math.random() * 3000));
             notify();
             return poll;

@@ -1,9 +1,10 @@
-package com.cjj.demo.socketpc;
+package com.cjj.demo.socket0519;
+
+
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Queue;
 
 /**
  * xiangjiaoyun
@@ -27,12 +28,11 @@ public class ServerListenThread implements Runnable {
         try {
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            while(true){
-                synchronized (message){
-                    message.add(ois.readObject());
+            String context;
+            while((context = ois.readLine()) != null){
+                    message.produce((String) ois.readObject());
                     objectOutputStream.writeObject("服务器收到信息");
                     objectOutputStream.flush();
-                }
             }
         }catch (Exception e){
             e.printStackTrace();

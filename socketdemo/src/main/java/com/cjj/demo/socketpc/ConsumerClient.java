@@ -32,7 +32,7 @@ public class ConsumerClient {
                     Socket socket = new Socket(IP, PORT);
                     ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                     while (true){
-                        System.out.println(objectInputStream.readObject());
+                        System.out.println("接收生產者返回信息:" + objectInputStream.readObject());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
